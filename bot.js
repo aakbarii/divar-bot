@@ -13,9 +13,15 @@ let seenLinks = new Set();
 
 // بارگذاری لینک‌های قبلی از فایل
 if (fs.existsSync(DB_FILE)) {
-  const saved = JSON.parse(fs.readFileSync(DB_FILE));
-  seenLinks = new Set(saved);
+  try {
+    const saved = JSON.parse(fs.readFileSync(DB_FILE, "utf-8"));
+    seenLinks = new Set(saved);
+  } catch (error) {
+    console.warn("⚠️ فایل JSON معتبر نیست. آرایه جدید ساخته می‌شود.");
+    seenLinks = new Set();
+  }
 }
+
 
 // ذخیره در فایل
 function saveLinksToFile() {
@@ -57,4 +63,11 @@ async function checkDivar() {
 checkDivar();
 setInterval(checkDivar, 2 * 60 * 1000);
 
+// دریافت پیام و پاسخ
+bot.on("text", (ctx) => {
+  ctx.reply("جانم ✨");
+});
+
+// راه‌اندازی ربات
 bot.launch();
+
