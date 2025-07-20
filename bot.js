@@ -3,8 +3,8 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const { Telegraf } = require("telegraf");
 
-const BOT_TOKEN = "7538327618:AAGL_vAl53KPoVoUwIJYe-rfAEzPtZgU2zI";
-const CHAT_ID = "1934380377";
+const BOT_TOKEN = process.env.BOT_TOKEN;
+const CHAT_ID = process.env.CHAT_ID;
 const bot = new Telegraf(BOT_TOKEN);
 
 // فایل ذخیره آگهی‌های ارسال‌شده
